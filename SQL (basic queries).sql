@@ -43,7 +43,7 @@ select *
 from customers
 where country="GERMANY";
 
--- interested only to see name and company nod id or score
+-- interested only to see name and company not id or score
 
 select first_name,country
 from customers
@@ -87,7 +87,7 @@ select country,first_name,sum(score) as total_score
 from customers
 group by country,first_name;
 
--- find the total score and total numbere of customers for  each country
+-- find the total score and total numbers of customers for  each country
 
 select country, sum(score) as tot_score, count(first_name) as tot_no_of_cust 
 from customers
@@ -163,7 +163,7 @@ limit 1;
 
 
 
--- WE CAN RUN MULTIPLE QUERIES AT ONE GO
+-- WE CAN RUN MULTIPLE QUERIES AT ONE GO 
 select * 
 from customers;
 
