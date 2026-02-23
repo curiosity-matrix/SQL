@@ -247,7 +247,31 @@ select  year(orderdate) as order_yr, monthname(orderdate) as order_month, avg(da
 from salesdb.orders
 group by year(orderdate),monthname(orderdate);
 
--- find the no. of days between each order and previous order  (fro previous things we use lag() - window function 
 
 
---	 
+-- find the no. of days b/w each order and the previos order
+
+-- lag(col,how many rows back u want to look) over (order by col) -> is a window function 
+
+select orderdate,
+lag(orderdate) over (order by orderdate) as prevdate,					
+datediff(orderdate,lag(orderdate) over (order by orderdate)) as difference
+from orders;
+
+
+-- DATE validation
+
+select str_to_date('123','%Y-%m-%d') as result;
+select str_to_date('2026-2-23','%Y-%m-%d') as result;
+
+
+-- CASE WHEN		-- all branches (then, else) must return same data type
+
+select orderdate,
+case 
+when str_to_Date(orderdate,'%Y-%m-%d') is null
+then 'not a date'
+else "it's a date"
+end as date_check
+from orders;
+
